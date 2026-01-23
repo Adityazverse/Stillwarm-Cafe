@@ -41,6 +41,7 @@ body.dark-theme {
   --border-color: #3d3530;
 }
 
+
 /* Dark theme background colors */
 body.dark-theme.bg-default {
   --primary-bg: #1a1512;
@@ -71,6 +72,7 @@ body.dark-theme.bg-peach {
   background-color: #2a2018;
 }
 
+/* (Initial commit: add Stillwarm website files) */
 /* Header */
 .sticky-header {
   position: sticky;

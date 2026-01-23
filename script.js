@@ -1,4 +1,4 @@
-// Theme Toggle
+
 function toggleTheme() {
   document.body.classList.toggle('dark-theme');
   localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
@@ -18,6 +18,8 @@ function setBackground(bgKey) {
   const bg = backgroundPresets[bgKey];
   if (bg) {
     document.documentElement.style.setProperty('--primary-bg', bg.color);
+
+
     
     // Remove all bg classes
     document.body.classList.remove('bg-default', 'bg-lavender', 'bg-sage', 'bg-blush', 'bg-sky', 'bg-peach');
@@ -25,6 +27,7 @@ function setBackground(bgKey) {
     // Add current bg class
     document.body.classList.add('bg-' + bgKey);
     
+//  (Initial commit: add Stillwarm website files)
     localStorage.setItem('selectedBackground', bgKey);
     updateBackgroundButtons(bgKey);
   }
