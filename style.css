@@ -41,6 +41,38 @@ body.dark-theme {
   --border-color: #3d3530;
 }
 
+
+/* Dark theme background colors */
+body.dark-theme.bg-default {
+  --primary-bg: #1a1512;
+}
+
+body.dark-theme.bg-lavender {
+  --primary-bg: #2a2420;
+  background-color: #2a2420;
+}
+
+body.dark-theme.bg-sage {
+  --primary-bg: #1f2520;
+  background-color: #1f2520;
+}
+
+body.dark-theme.bg-blush {
+  --primary-bg: #2a1f22;
+  background-color: #2a1f22;
+}
+
+body.dark-theme.bg-sky {
+  --primary-bg: #1a2028;
+  background-color: #1a2028;
+}
+
+body.dark-theme.bg-peach {
+  --primary-bg: #2a2018;
+  background-color: #2a2018;
+}
+
+/* (Initial commit: add Stillwarm website files) */
 /* Header */
 .sticky-header {
   position: sticky;
