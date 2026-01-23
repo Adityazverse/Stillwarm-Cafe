@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>a space for still moments</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Header -->
+<header class="sticky-header">
+  <div class="header-container">
+    <div class="logo-section">
+      <h1 class="site-logo">stillwarm</h1>
+      <span class="tagline">Hey There 🥂</span>
+      <div class="bg-selector">
+        <button class="bg-option active" data-bg="default" onclick="setBackground('default')" title="warm cream"></button>
+        <button class="bg-option" data-bg="lavender" onclick="setBackground('lavender')" title="soft lavender"></button>
+        <button class="bg-option" data-bg="sage" onclick="setBackground('sage')" title="sage green"></button>
+        <button class="bg-option" data-bg="blush" onclick="setBackground('blush')" title="blush pink"></button>
+        <button class="bg-option" data-bg="sky" onclick="setBackground('sky')" title="pale sky"></button>
+        <button class="bg-option" data-bg="peach" onclick="setBackground('peach')" title="warm peach"></button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="#home" class="nav-link">Home 🏠</a>
+      <a href="#about" class="nav-link">About ✨</a>
+      <a href="#memories" class="nav-link">Memories 💭</a>
+      <a href="#sounds" class="nav-link">Sounds 🎧</a>
+      <a href="#faq" class="nav-link">Questions 🙋🏼‍♂️</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()">☀️</button>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h2 class="hero-title">The places we loved never truly disappear</h2>
+    <p class="hero-subtitle">They live in the quiet corners of our minds—in the sound of coffee brewing, in half-remembered conversations, in the warmth we still carry</p>
+    <button class="cta-button" onclick="scrollToSection('memories')">start here</button>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+  <div class="content-container">
+    <h2 class="section-title">Why this exists</h2>
+    
+    <div class="card-grid">
+      <div class="content-card">
+        <h3>Spaces hold us</h3>
+        <p>Certain places become part of who we are. a favorite cafe, a corner booth, the particular angle of afternoon light—these moments don't fade. they reshape us quietly, leaving traces we carry forward.</p>
+      </div>
+      
+      <div class="content-card">
+        <h3>Slowness is powerful</h3>
+        <p>In a world that moves too fast, we need shelter. ritual. the deliberate pause of pouring tea, the meditation of focused work, the gentle percussion of rain against windows. these small acts ground us.</p>
+      </div>
+      
+      <div class="content-card">
+        <h3>Memory is precious</h3>
+        <p>What we remember matters. documenting these emotional landmarks—the feeling of belonging, the faces we miss, the versions of ourselves tied to specific moments—keeps them alive and real.</p>
+      </div>
+      
+      <div class="content-card">
+        <h3>you are not alone</h3>
+        <p>if you've ever sat in a cafe and felt like time stopped. if you've missed a place more than seems logical. if silence feels like home. this space is for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mood Music Section -->
+<section id="music" class="mood-music">
+  <div class="content-container">
+    <h2 class="section-title">music for these moments</h2>
+    <p class="section-subtitle">curate your own soundtrack. this stays only on your device.</p>
+    
+    <div class="music-card">
+      <input 
+        type="text" 
+        id="spotifyLink" 
+        placeholder="paste a spotify playlist link…" 
+        class="music-input"
+      />
+      <button onclick="loadSpotify()" class="action-button">load playlist</button>
+      <div id="spotifyPlayer" class="spotify-player"></div>
+    </div>
+
+    <div class="playlist-guide">
+      <p class="guide-text">✨ suggestion: search "lo-fi beats to study to" or "ambient cafe" on spotify</p>
+    </div>
+  </div>
+</section>
+
+<!-- Ambient Sounds Section -->
+<section id="sounds" class="ambient-sounds">
+  <div class="content-container">
+    <h2 class="section-title">craft your atmosphere</h2>
+    <p class="section-subtitle">layer these sounds to build your perfect environment</p>
+    
+    <div class="sound-controls">
+      <div class="master-volume">
+        <label class="control-label">master volume</label>
+        <input 
+          type="range" 
+          min="0" 
+          max="1" 
+          step="0.01" 
+          value="0.3"
+          oninput="setMasterVolume(this.value)"
+          class="master-slider"
+        />
+      </div>
+      
+      <button onclick="startAllSounds()" class="play-button">▶ start ambience</button>
+      
+      <div class="sound-grid">
+        <div class="sound-control">
+          <label class="sound-label">
+            <span class="sound-emoji">☕</span>
+            <span class="sound-name">espresso machine</span>
+          </label>
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            value="0"
+            data-audio="espresso"
+            class="sound-slider"
+          />
+          <span class="volume-display">0%</span>
+        </div>
+        
+        <div class="sound-control">
+          <label class="sound-label">
+            <span class="sound-emoji">🥛</span>
+            <span class="sound-name">cups and spoons</span>
+          </label>
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            value="0"
+            data-audio="cups"
+            class="sound-slider"
+          />
+          <span class="volume-display">0%</span>
+        </div>
+        
+        <div class="sound-control">
+          <label class="sound-label">
+            <span class="sound-emoji">💬</span>
+            <span class="sound-name">soft chatter</span>
+          </label>
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            value="0"
+            data-audio="chatter"
+            class="sound-slider"
+          />
+          <span class="volume-display">0%</span>
+        </div>
+        
+        <div class="sound-control">
+          <label class="sound-label">
+            <span class="sound-emoji">🌧️</span>
+            <span class="sound-name">rain outside</span>
+          </label>
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            value="0"
+            data-audio="rain"
+            class="sound-slider"
+          />
+          <span class="volume-display">0%</span>
+        </div>
+        
+        <div class="sound-control">
+          <label class="sound-label">
+            <span class="sound-emoji">🔥</span>
+            <span class="sound-name">fireplace crackling</span>
+          </label>
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            value="0"
+            data-audio="fire"
+            class="sound-slider"
+          />
+          <span class="volume-display">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Memory Writing Section -->
+<section id="memories" class="memory-section">
+  <div class="content-container">
+    <h2 class="section-title">write what you carry</h2>
+    <p class="section-subtitle">document the moments, people, and places that shaped you</p>
+    
+    <div class="memory-form">
+      <input 
+        type="text" 
+        id="memoryTitle" 
+        placeholder="give this moment a name…" 
+        class="form-input form-title"
+      />
+      <textarea 
+        id="memoryText" 
+        placeholder="write what you want to remember. there's no word limit, no pressure to be eloquent. just honest."
+        class="form-textarea"
+      ></textarea>
+      
+      <div class="form-row">
+        <select id="memoryMood" class="form-select">
+          <option>🌧️ longing</option>
+          <option>☕ warmth</option>
+          <option>🎧 focused</option>
+          <option>💭 grateful</option>
+          <option>🌙 reflective</option>
+        </select>
+        <button onclick="saveMemory()" class="action-button save-btn">save to memory</button>
+      </div>
+    </div>
+
+    <div id="memoryList" class="memories-display"></div>
+  </div>
+</section>
+
+<!-- Reflection / FAQ Section -->
+<section id="faq" class="reflections">
+  <div class="content-container">
+    <h2 class="section-title">reflections</h2>
+    <p class="section-subtitle">questions we've asked ourselves</p>
+    
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3 class="faq-question">why do we miss places more than people sometimes?</h3>
+        <p class="faq-answer">spaces are stable. people change. in a cafe corner, we can encounter past versions of ourselves without the weight of all the ways things have shifted. that permanence is comforting.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">is it okay to feel nostalgic for something that's still happening?</h3>
+        <p class="faq-answer">absolutely. we can grieve the ending of moments while they're still unfolding. that bittersweet awareness—that nothing lasts—is what makes presence real. it's not sadness. it's love.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">how do we hold memories without holding them too tight?</h3>
+        <p class="faq-answer">let them live in soft focus. write them down, then release the need to perfectly preserve every detail. the feeling is what matters. the essence stays, and that's enough.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">what's the point of writing it down if we already remember?</h3>
+        <p class="faq-answer">the act of writing transforms remembering. it makes the intangible real. it's witness to your own life. someday, reading your words will let you time-travel in the most gentle way.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">can a digital space feel like home?</h3>
+        <p class="faq-answer">home is where your truths are held safely. if this space feels like a warm corner where you can be honest about what you miss and cherish, then yes. it can be home.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3 class="faq-question">what do you do with all this longing?</h3>
+        <p class="faq-answer">you transform it into presence. you take what you learned in those places and people, and you build something new with it. you become the cafe for someone else.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="content-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>about this space</h4>
+        <p>a sanctuary for those who carry places in their hearts. built for quiet reflection, ambient focus, and the gentle act of remembering what made us feel alive.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>pages</h4>
+        <ul>
+          <li><a href="#about">about</a></li>
+          <li><a href="#memories">memories</a></li>
+          <li><a href="#sounds">sounds</a></li>
+          <li><a href="#faq">questions</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>more</h4>
+        <ul>
+          <li><a href="#">privacy</a></li>
+          <li><a href="#">contact</a></li>
+          <li><a href="#">source code</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 • a project about the places we love</p>
+      <p class="footer-note">your memories stay on your device. we don't collect or store them.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Audio Elements -->
+<audio id="audio-espresso" loop></audio>
+<audio id="audio-cups" loop></audio>
+<audio id="audio-chatter" loop></audio>
+<audio id="audio-rain" loop></audio>
+<audio id="audio-fire" loop></audio>
+
+<script src="script.js"></script>
+
+</body>
+</html>
