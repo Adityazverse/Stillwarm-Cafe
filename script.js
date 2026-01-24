@@ -67,16 +67,27 @@ const audioElements = {
   cups: document.getElementById('audio-cups'),
   chatter: document.getElementById('audio-chatter'),
   rain: document.getElementById('audio-rain'),
-  fire: document.getElementById('audio-fire')
+  fire: document.getElementById('audio-fire'),
+  brown: document.getElementById('audio-brown'),
+  pad: document.getElementById('audio-pad'),
+  wind: document.getElementById('audio-wind'),
+  ocean: document.getElementById('audio-ocean')
 };
+
 
 // Sample audio URLs (using royalty-free sources)
 const audioURLs = {
+
   espresso: 'https://assets.mixkit.co/active_storage/sfx/2167/2167-preview.mp3',
   cups: 'https://assets.mixkit.co/active_storage/sfx/934/934-preview.mp3',
   chatter: 'https://assets.mixkit.co/active_storage/sfx/2104/2104-preview.mp3',
   rain: 'https://assets.mixkit.co/active_storage/sfx/1165/1165-preview.mp3',
-  fire: 'https://assets.mixkit.co/active_storage/sfx/1896/1896-preview.mp3'
+  fire: 'https://assets.mixkit.co/active_storage/sfx/1896/1896-preview.mp3',
+
+  brown: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_6e9c61c1b0.mp3',
+  pad: 'https://cdn.pixabay.com/download/audio/2022/10/30/audio_7c7fd1b5f7.mp3',
+  wind: 'https://cdn.pixabay.com/download/audio/2021/11/09/audio_1c2e3b3d1e.mp3',
+  ocean: 'https://cdn.pixabay.com/download/audio/2022/02/23/audio_47c2f90c99.mp3'
 };
 
 // Set audio sources
@@ -119,8 +130,10 @@ document.querySelectorAll('.sound-slider').forEach(slider => {
     
     if (audioElements[audioType]) {
       audioElements[audioType].volume = volume;
-      if (volume > 0 && audioElements[audioType].paused) {
-        audioElements[audioType].play().catch(() => {});
+      if (['brown', 'pad', 'wind', 'ocean'].includes(audioType)) {
+        audioElements[audioType].volume = volume * 0.7;
+      } else {
+        audioElements[audioType].volume = volume;
       }
       if (display) {
         display.textContent = Math.round(parseFloat(e.target.value) * 100) + '%';
@@ -258,5 +271,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+
+/* ===============================
+   Scroll Reveal Logic
+================================ */
+
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  },
+  {
+    threshold: 0.15
+  }
+);
+
+revealElements.forEach(el => revealObserver.observe(el));
 
 
